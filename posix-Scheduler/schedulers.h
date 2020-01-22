@@ -1,3 +1,8 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+
 #define MIN_PRIORITY 1
 #define MAX_PRIORITY 10
 
