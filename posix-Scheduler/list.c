@@ -6,18 +6,19 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "list.h"
 #include "task.h"
 
 
 // add a new task to the list of tasks
-void insert(struct node **head, Task *newTask) {
+void insert(struct node **tail, Task *newTask) {
     // add the new task to the list 
     struct node *newNode = malloc(sizeof(struct node));
 
     newNode->task = newTask;
-    newNode->next = *head;
-    *head = newNode;
+	newNode->next = NULL;
+	*tail->next = newNode;
+    
+    
 }
 
 // delete the selected task from the list
