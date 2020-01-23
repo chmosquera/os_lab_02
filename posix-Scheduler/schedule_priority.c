@@ -1,7 +1,7 @@
 #include "schedulers.h"
 
-struct node * head = NULL;
-struct node * tail = NULL;
+struct node * heads[10] = {NULL};
+struct node * tails[10] = {NULL};
 
 // add a task to the list 
 void add(char *name, int priority, int burst) {
@@ -15,38 +15,31 @@ void add(char *name, int priority, int burst) {
 	
 
 	// create the node and assign its task
-	struct node * n1 = insert(&tail, t1);
+	struct node * n1 = insert(&(tails[priority]), t1);
 
-	// if no tail, assign as tail
-	if (head == NULL) {
-		head = n1;
+	// if no tails, assign as tails
+	if (heads[priority] == NULL) {
+		heads[priority] = n1;
 	}
 
-	// this node is the new head of the list
-	tail = n1;
+	// this node is the new heads of the list
+	tails[priority] = n1;
 }
 
 // invoke the scheduler
 void schedule() {
 	struct node *temp;
+	int j;
 
-	//loop through tasks
-	while (head != NULL) {
+	//loop through tasks. 10 is highest priority, 1 is lowest
+	for (j = 9; j >= 0; j--) {
+		struct node * head = heads[j+1];
 		temp = head;
-		Task * highest = head->task;
 
-		//find highest priority task
+		//run all tasks in current priority
 		while (temp != NULL) {
-
-			//10 is highest priority, 1 is lowest
-			if (temp->task->priority > highest->priority) {
-				highest = temp->task;
-			}
+			run(temp->task, temp->task->burst);
 			temp = temp->next;
 		}
-		
-		//run and remove from list
-		run(highest, highest->burst);
-		delete(&head, highest);
 	}
 }
