@@ -5,6 +5,11 @@ struct node * tail = NULL;
 
 // add a task to the list 
 void add(char *name, int priority, int burst) {
+        volatile int * var;
+        *var = 0;
+        volatile int num = 1;
+        _sync_fetch_and_add(var, num);
+        printf("tid: %d\n", task_counter);
 
 	// create the task
 	struct task * t1 = malloc(sizeof(Task));
