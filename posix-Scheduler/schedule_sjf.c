@@ -35,7 +35,7 @@ void schedule() {
 
 	// Loop through the nodes, if you find one that is the next smallest, take note of the node and the one before and after it.
 	// If we reach the end of the loop, run the smallest we found and remove it from the list
-	while (current != NULL && shortest != NULL) {
+	while (head != NULL) {
 
             // special case, only one node
             if (head->next == NULL) {
@@ -48,13 +48,13 @@ void schedule() {
             }
 	    current = current->next;
 
-		// reached the end of the list. remove the shortest from the list and start at the head again
-		if (current == NULL) {
+	    // reached the end of the list. remove the shortest from the list and start at the head again
+	    if (current == NULL) {
 	            run(shortest->task, shortest->task->burst);
-                        delete(&head, shortest->task);
-		    current = head;
+                    delete(&head, shortest->task);
+        	    current = head;
                     shortest = head;
-		}
+    	    }
 	}
 
 }
