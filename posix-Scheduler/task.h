@@ -13,4 +13,4 @@ typedef struct task {
     int burst;
 } Task;
 
-#endif
+#endif //TASK_H

@@ -1,3 +1,6 @@
+#ifndef SCHEDULER_H
+#define SCHEDULER_H
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -14,3 +17,5 @@ void add(char *name, int priority, int burst);
 
 // invoke the scheduler
 void schedule();
+
+#endif //SCHEDULER_H
