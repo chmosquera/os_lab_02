@@ -33,26 +33,23 @@ void schedule() {
 	//loop through tasks
         int j;
         for (j = 9; j >= 0; j--) {
-	    int i = 0;
-            struct node * head = heads[j];
+            struct node * head = heads[j+1];
             while (head != NULL) {
             	temp = head;
             
             	//run each task until done or time up
             	while (temp != NULL) {
-            		int remain_time = temp->task->burst - i * quant_time;
-            		//fprintf(stderr, "Task %s remaining time: %d\n", temp->task->name, remain_time);
-            		//compare burst time remaining
-            		if (remain_time <= quant_time) {
-            			run(temp->task, remain_time);
+                    //compare burst time remaining
+            		if (temp->task->burst <= quant_time) {
+            			run(temp->task, temp->task->burst);
             			delete(&head, temp->task);
             		} else {
             			//run for quantum time
             			run(temp->task, quant_time);
+                        temp->task->burst -= quant_time;
             		}
             		temp = temp->next;
             	}
-            	i++;
             }
         }
 }

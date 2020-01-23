@@ -30,7 +30,6 @@ void add(char *name, int priority, int burst) {
 void schedule() {
 	struct node *temp;
 	int quant_time = 10;
-	int i = 0;
 
 	//loop through tasks
 	while (head != NULL) {
@@ -38,18 +37,16 @@ void schedule() {
 
 		//run each task until done or time up
 		while (temp != NULL) {
-			int remain_time = temp->task->burst - i * quant_time;
-			//fprintf(stderr, "Task %s remaining time: %d\n", temp->task->name, remain_time);
 			//compare burst time remaining
-			if (remain_time <= quant_time) {
-				run(temp->task, remain_time);
+			if (temp->task->burst <= quant_time) {
+				run(temp->task, temp->task->burst);
 				delete(&head, temp->task);
 			} else {
 				//run for quantum time
 				run(temp->task, quant_time);
+				temp->task->burst -= quant_time;
 			}
 			temp = temp->next;
 		}
-		i++;
 	}
 }
