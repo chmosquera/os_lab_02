@@ -1,8 +1,8 @@
 #include "schedulers.h"
 #include "list.h"
 
-struct * node head = NULL;
-struct * node tail = NULL;
+struct node * head = NULL;
+struct node * tail = NULL;
 
 // add a task to the list 
 void add(char *name, int priority, int burst) {
