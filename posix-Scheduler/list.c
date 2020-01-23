@@ -2,22 +2,21 @@
  * Various list operations
  */
  
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
 #include "list.h"
-#include "task.h"
-
 
 // add a new task to the list of tasks
-void insert(struct node **head, Task *newTask) {
+struct node * insert(struct node **tail, Task *newTask) {
     // add the new task to the list 
     struct node *newNode = malloc(sizeof(struct node));
 
     newNode->task = newTask;
-    newNode->next = *head;
-    *head = newNode;
+    newNode->next = NULL;
+
+    if (*tail != NULL) {
+       (*tail)->next = newNode;
+    }
+
+    return newNode;
 }
 
 // delete the selected task from the list

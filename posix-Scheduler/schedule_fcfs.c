@@ -1,26 +1,21 @@
 #include "schedulers.h"
-#include "list.h"
 
-struct * node head = NULL;
-struct * node tail = NULL;
+struct node * head = NULL;
+struct node * tail = NULL;
 
 // add a task to the list 
 void add(char *name, int priority, int burst) {
 
 	// create the task
 	struct task * t1 = malloc(sizeof(Task));
-	t1 = {
-		.name = name,
-		.tid = 0, // what should this be?
-		.priority = priority,
-		.burst = burst
-	};
+	t1->name = name;
+	t1->tid = 0; // what should this be?
+	t1->priority = priority;
+	t1->burst = burst;
+	
 
 	// create the node and assign its task
-	struct node n1;
-	*n1.task = t1;
-	n1.next = NULL;
-	insert(last_node, n1);
+	struct node * n1 = insert(&tail, t1);
 
 	// if no tail, assign as tail
 	if (head == NULL) {
