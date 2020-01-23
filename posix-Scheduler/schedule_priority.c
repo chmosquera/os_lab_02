@@ -5,24 +5,24 @@ struct node * tails[10] = {NULL};
 
 // add a task to the list 
 void add(char *name, int priority, int burst) {
+        __sync_fetch_and_add(&tid_counter, TID_ADD_BY);
 
 	// create the task
 	struct task * t1 = malloc(sizeof(Task));
 	t1->name = name;
-	t1->tid = 0; // what should this be?
+	t1->tid = tid_counter; // what should this be?
 	t1->priority = priority;
 	t1->burst = burst;
-	
 
 	// create the node and assign its task
 	struct node * n1 = insert(&(tails[priority]), t1);
 
-	// if no tails, assign as tails
+	// if no head, assign as head
 	if (heads[priority] == NULL) {
 		heads[priority] = n1;
 	}
 
-	// this node is the new heads of the list
+	// this node is the new tail of the list
 	tails[priority] = n1;
 }
 
