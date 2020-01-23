@@ -1,6 +1,9 @@
 /**
  * list data structure containing the tasks in the system
  */
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 #include "task.h"
 
@@ -10,6 +13,6 @@ struct node {
 };
 
 // insert and delete operations.
-void insert(struct node **head, Task *task);
+struct node * insert(struct node **head, Task *task);
 void delete(struct node **head, Task *task);
 void traverse(struct node *head);

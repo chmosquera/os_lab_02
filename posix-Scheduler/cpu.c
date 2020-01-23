@@ -2,9 +2,6 @@
  * "Virtual" CPU that also maintains track of system time.
  */
 
-#include <stdio.h>
-
-#include "task.h"
 #include "cpu.h"
 
 // run this task for the specified time slice
