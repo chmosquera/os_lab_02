@@ -3,7 +3,7 @@
 struct node * head = NULL;
 struct node * tail = NULL;
 
-tid_counter = 0;
+int tid_counter = 0;
 
 // add a task to the list 
 void add(char *name, int priority, int burst) {
