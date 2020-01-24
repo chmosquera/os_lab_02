@@ -4,4 +4,3 @@ Running task = [T3] [40] [50] for 50 units.
 Running task = [T4] [40] [50] for 50 units.
 Running task = [T5] [40] [50] for 50 units.
 Running task = [T6] [40] [50] for 50 units.
-
