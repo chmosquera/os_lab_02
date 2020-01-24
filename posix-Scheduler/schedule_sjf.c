@@ -39,6 +39,7 @@ void schedule() {
 
             // special case, only one node
             if (head->next == NULL) {
+	        run(shortest->task, shortest->task->burst);
                 delete(&head, head->task);
                 break;
             } 
