@@ -14,7 +14,7 @@
 
 #define TID_ADD_BY 1
 
-int tid_counter = 0;
+extern int tid_counter;
 
 // add a task to the list 
 void add(char *name, int priority, int burst);
